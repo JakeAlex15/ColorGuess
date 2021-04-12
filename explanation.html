@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>My First Program</title>
+</head>
+<body>
+    <h1>Color Guessing Game</h1>
+    <button type="button" onclick="runGame()">Button</button>
+
+    <script type="text/javascript">
+        // we define our color array outside of the runGame function
+        // we do this because this is static, we don't need to create a new array every time the game runs
+        const colorsArray = ["red", "blue", "green", "white", "gold"];
+
+        // this is the method we call every time the button is clicked to start the game
+        function runGame() {
+            //  we want to select a new color, randomly, each time the game starts
+            const target = colorsArray[Math.floor(Math.random() * colorsArray.length)];
+            // we define a variable here to store whether the user has guessed the right answer or not
+            let correct = false;
+
+            // we want to initiate a do, while loop here because, if the user repeatedly guesses the wrong answer
+            // we want to be able to loop the user back into guessing again, until they win or decide not to play anymore
+            // the loop will continue as long as the user has not guessed the correct answer.
+            do {
+                // we assign our prompt value to a variable, we will use this variable to compare against the random word
+                let guess = prompt(`What color am I thinking of?\n\n ${colorsArray.join(", ")}`);
+                // null is the value that is returned when a user hits Esc or the Cancel button
+                // returning null from guess should promptly end the game and display a message
+                if (guess === null) {
+                    alert("Thanks for playing!");
+                    return;
+                }
+                // any other value for correct will be passed into our checkGuess function
+                // our checkGuess function will handle validation for us
+                // this function returns true or false, which is what is evaluated by our while condition
+                correct = checkGuess(guess, target);
+            } while(!correct)
+            // the user will only receive this alert when the loop is ended after winning the game.
+            // this message doesnt display when the user cancels because we added our return that pre-emptively ends the function while the loop is running
+            alert("Congrats, you've won!");
+        }
+
+        function checkGuess(guess, target) {
+            // here we have multiple conditions to validate our guess
+
+            // first we want to check if the user actually entered a value at all (for example, if they just hit enter)
+            // if they did, we return a message and a value of falselet the user know they need to input some kind of value to guess
+            if (guess === "") {
+                alert("Please enter a color.");
+                return false;
+            } else if (!colorsArray.includes(guess)) { 
+                // we want to check whether the user actually inputted something that is in the array at all (e.g. instead of a color, the say "Car")
+                // if it was a value that doesnt exist in the array, we open a message and return false.
+                alert("Your color is not in the list.") 
+                return false;
+            } else if (guess.length > target.length) { 
+                // assuming now at this point, the user has inputted a color that exists in the array
+                // we want to check whether the user inputted a color that is longer than the random color chosen
+                // if it is, we return a message for the user to input a shorter color and return false here
+                alert("Your guess has more characters than the color I'm thinking of.");
+                return false;
+            } else if (guess.length < target.length) {
+                // here we want to check the inverse, we want to check if the user has submitted a color that is shorted than the random word
+                // if it is, we return a helpful message and return a value of false again
+                alert("Your guess has less characters than the color I'm thinking of.");
+                return false;
+            } else if (guess !== target) {
+                // this is another edge case we need to catch, the user can enter a value that is equal in length, but still the wrong color
+                // For example: Guess is Blue, but target is Grey. They are the same lenght, but guess is the wrong word.
+                // we put this last conditional to catch if the user hasn't inputted the correct color at all. return a message and false
+                alert("Your guess is not correct. Please try again.");
+                return false;
+            } else {
+                // if we get to this point, the user should have guessed the right answer since we have covered all of our edge cases and behaviors to determine whether a guess is right or not via conditionals
+                // if a user passed all of our checks, the only solution is the right answer, so we return that the user has guessed correctly, or True.
+                return true
+            }
+        }
+    </script>
+</script>
+</body>
+</html>

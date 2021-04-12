@@ -1,0 +1,61 @@
+body {
+  background-color: rgb(247, 247, 196);
+}
+h1 {
+    text-align: center;
+    font-family: 'Pangolin', cursive;
+}
+h2 {
+  font-family: 'Pangolin', cursive;
+  text-align: center;
+  font-size: 1.5rem;
+}
+h3 {
+  font-family: 'Pangolin', cursive;
+  text-transform: capitalize;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.button-success {
+    background-image: linear-gradient(to left, rgba(238, 130, 238, 0.767), rgba(76, 0, 130, 0.664), rgba(0, 0, 255, 0.548), rgba(255, 0, 0, 0.541), rgba(255, 255, 0, 0.637), rgba(255, 166, 0, 0.507), rgba(0, 128, 0, 0.514));
+    margin-right: auto;
+    margin-left:44.2%;
+    height: 2.5rem;
+    cursor: pointer;
+    font-family: 'Pangolin', cursive;
+    font-size: 15px;
+}
+  .container {
+    height: 200px;
+    position: relative;
+    border: 7.5px dotted;
+    border-color: rgb(0, 0, 0);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  span {
+      background-image: linear-gradient(to left, rgba(238, 130, 238, 0.753), rgba(76, 0, 130, 0.664), rgba(0, 0, 255, 0.548), rgba(255, 0, 0, 0.541), rgba(255, 255, 0, 0.637), rgba(255, 166, 0, 0.507), rgba(0, 128, 0, 0.514));
+      color:black;
+  }
+  #page-container {
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  #content-wrap {
+    padding-bottom: 2.5rem;    
+  }
+  
+  #footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 4.5rem;            
+    background-image: linear-gradient(to left, rgba(238, 130, 238, 0.767), rgba(76, 0, 130, 0.664), rgba(0, 0, 255, 0.548), rgba(255, 0, 0, 0.541), rgba(255, 255, 0, 0.644), rgba(255, 166, 0, 0.507), rgba(0, 128, 0, 0.514));
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Color!!</title>
+</head>
+<body>
+   
+    <div class="container">
+    <h1> <span>Welcome to: <br /> Guess The Color!!</span></h1>
+    <button class="button-success pure-button" onclick="runGame()"><strong>Click to Start the Game!!</strong></button>
+    </div>
+    <div class="page-container">
+    <div class="content-wrap">
+        <img>
+    </div>
+    <h2>Instructions --</h2>
+    <h3>
+        This is a simple color guessing game created by jake alexander. <br />
+        There are 10 different colors built into this game, <br /> <br />
+        they are -- <br />
+        blue, cyan, gold, gray, green, <br />
+        magenta, orange, red, white, and yellow. <br /> <br />
+        To begin the game, click the 'start' button and type in your guess. <br />
+        from there, the computer will let you know if you guessed the correct color. <br />
+        you have unlimited guesses and you'll be given the final amount of attempts at the end! <br /> <br />
+        have fun!! :D
+    </h3>
+    <footer id="footer"></footer>
+
+    <script>
+        const COLORS_ARRAY = ['blue' , 'cyan' , 'gold', 'gray', 'green', 'magenta', 'orange', 'red', 'white', 'yellow'];
+        
+        function runGame() {
+            let guess = "";
+            let correct = false;
+            let numTries = 0;
+            const targetIndex = COLORS_ARRAY[Math.floor(Math.random() * COLORS_ARRAY.length)];
+            const target = COLORS_ARRAY.indexOf(targetIndex);
+            
+          do {
+                guess = prompt('I am thinking of one of these colors:\n\n' + (COLORS_ARRAY)+ '\nWhat color am I thinking of?\n'); 
+                if (guess === null) {
+                    numTries = ++numTries
+                    alert("Thanks for playing, it took you " + numTries + " attempt(s)");
+                    return numTries;
+                }
+           correct = checkGuess(guess, targetIndex)
+           console.log(correct)
+           if (correct == true) {
+            numTries = ++numTries
+            document.body.style.background = guess;
+               alert("Good work! You got the correct color in " + numTries + " attempt(s)!")
+               return;
+           } else {
+               numTries = ++numTries
+               console.log(numTries)
+           }
+               //alert("Nice work!! You guessed the right answer in" + numTries);
+        } while (!correct)
+    }
+    function checkGuess(guess, target) {
+           let correct = false;
+            if(!COLORS_ARRAY.includes(guess)) {
+                alert("Your guess is not on the list")
+            } else if(guess.length > target.length) {
+               alert("Your guess is longer than the answer.")
+            }else if(guess.length < target.length) {
+                alert("Your guess is shorter than the answer.")
+            }else {
+                if(guess == target) {
+                    correct = true;
+                    console.log(guess, target)
+                    return correct;
+                }else {
+                    console.log("answer is not correct", guess, target)
+                }
+                return correct;
+               
+            }
+            return correct;
+        }
+    </script>
+</body>
+</html>
